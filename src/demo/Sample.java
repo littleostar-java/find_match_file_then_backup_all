@@ -1,5 +1,7 @@
 package demo;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.apache.commons.io.FileUtils;
 import util.StaticUtilTool;
 
@@ -33,6 +35,10 @@ public class Sample {
         executorService.shutdown();
     }
 
+    static Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    static String path_parent = System.getProperty("user.dir") + File.separator + "json_";
+    static File file = new File(path_parent, "array_.json");
+
     private static void do_delete_and_do_copy() throws IOException {
         StaticUtilTool staticUtilTool = new StaticUtilTool();
 
@@ -41,24 +47,19 @@ public class Sample {
 
         LinkedList<String> linkedList = new LinkedList<String>();
 
-        linkedList.add("C:\\IdeaProjects");
-        linkedList.add("C:\\WebstormProjects");
-
-        linkedList.add("C:\\Users\\littleOStar\\.android");
-        linkedList.add("C:\\Users\\littleOStar\\.config");
-        linkedList.add("C:\\Users\\littleOStar\\.IntelliJIdea2018.3");
-        linkedList.add("C:\\Users\\littleOStar\\.m2");
-        linkedList.add("C:\\Users\\littleOStar\\.WebStorm2018.3");
-        linkedList.add("C:\\Users\\littleOStar\\Coding");
-        linkedList.add("C:\\Users\\littleOStar\\Pictures");
-        linkedList.add("C:\\Users\\littleOStar\\Downloads");
-        linkedList.add("C:\\Users\\littleOStar\\.bash_history");
-        linkedList.add("C:\\Users\\littleOStar\\.gitconfig");
-        linkedList.add("C:\\Users\\littleOStar\\.yarnrc");
+        String readFileToString = FileUtils.readFileToString(file, "UTF-8");
+        linkedList = gson.fromJson(readFileToString, linkedList.getClass());
+//        use_list_get_json_write_to_file(linkedList);
 
         for (String str : linkedList) {
             staticUtilTool.do_copy_source_to_d_disk(str);
         }
         System.out.println("finish copy ............................................................");
+    }
+
+    private static void use_list_get_json_write_to_file(LinkedList<String> linkedList) throws IOException {
+        String json = gson.toJson(linkedList);
+        System.out.println(json);
+        FileUtils.writeStringToFile(file, json, "UTF-8");
     }
 }
