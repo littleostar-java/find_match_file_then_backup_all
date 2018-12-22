@@ -30,6 +30,8 @@ public class Sample {
         linkedList.add("C:\\Users\\littleOStar\\.gitconfig");
         linkedList.add("C:\\Users\\littleOStar\\.yarnrc");
 
+        linkedList.add("C:\\Users\\littleOStar\\AppData\\Local\\Google\\Chrome");
+
         for (String str : linkedList) {
             staticUtilTool.do_copy_source_to_d_disk(str);
         }
