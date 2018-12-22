@@ -43,7 +43,7 @@ public class Sample {
         StaticUtilTool staticUtilTool = new StaticUtilTool();
 
         String root_path = "C:" + File.separator + "WebstormProjects";
-        staticUtilTool.do_delete_by_path(root_path, "node_modules");
+//        staticUtilTool.do_delete_by_path(root_path, "node_modules");
 
         LinkedList<String> linkedList = new LinkedList<String>();
 
