@@ -30,6 +30,7 @@ public class Sample {
             }
         });
 
+        executorService.shutdown();
     }
 
     private static void do_delete_and_do_copy() throws IOException {
