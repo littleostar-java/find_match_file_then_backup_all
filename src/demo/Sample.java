@@ -1,13 +1,38 @@
 package demo;
 
+import org.apache.commons.io.FileUtils;
 import util.StaticUtilTool;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Sample {
     public static void main(String[] args) throws IOException {
+
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+
+        executorService.submit(() -> {
+            try {
+                FileUtils.deleteDirectory(new File(StaticUtilTool.dest_root_path_str));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        executorService.submit(() -> {
+            try {
+                do_delete_and_do_copy();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+    }
+
+    private static void do_delete_and_do_copy() throws IOException {
         StaticUtilTool staticUtilTool = new StaticUtilTool();
 
         String root_path = "C:" + File.separator + "WebstormProjects";
@@ -29,8 +54,6 @@ public class Sample {
         linkedList.add("C:\\Users\\littleOStar\\.bash_history");
         linkedList.add("C:\\Users\\littleOStar\\.gitconfig");
         linkedList.add("C:\\Users\\littleOStar\\.yarnrc");
-
-        linkedList.add("C:\\Users\\littleOStar\\AppData\\Local\\Google\\Chrome");
 
         for (String str : linkedList) {
             staticUtilTool.do_copy_source_to_d_disk(str);

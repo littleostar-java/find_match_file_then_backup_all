@@ -62,8 +62,9 @@ public class StaticUtilTool {
         }
     }
 
+    public static final String dest_root_path_str = "D:" + File.separator + "backup_"; // 目标路径
+
     public void do_copy_source_to_d_disk(String... root_path_str) throws IOException {
-        String dest_root_path_str = "D:" + File.separator + "backup_"; // 目标路径
 
 //        LocalDateTime now = LocalDateTime.now();
 //        String time_format = "time-" + now.getMonthValue() + now.getDayOfMonth() + "-" + now.getHour() + "00";
