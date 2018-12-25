@@ -81,14 +81,15 @@ public class StaticUtilTool {
                     .replace("C:\\", dest_root_file.getAbsolutePath() + File.separator)
             );
 
-            if (root_file.isDirectory()) {
-                FileUtils.copyDirectory(root_file, sub_file);
-            } else {
-                FileUtils.copyFile(root_file, sub_file);
+            if (root_file.exists()) {
+                if (root_file.isDirectory()) {
+                    FileUtils.copyDirectory(root_file, sub_file);
+                } else {
+                    FileUtils.copyFile(root_file, sub_file);
+                }
+                System.out.println("copy finished ... \n\t" + root_file.getAbsolutePath()
+                        + "\n\t" + sub_file.getAbsolutePath());
             }
-            System.out.println("copy finished ... \n\t" + root_file.getAbsolutePath()
-                    + "\n\t" + sub_file.getAbsolutePath());
-
         }
     }
 
