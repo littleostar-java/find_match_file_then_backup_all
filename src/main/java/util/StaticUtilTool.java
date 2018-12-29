@@ -159,6 +159,28 @@ public class StaticUtilTool {
     }
 
     /**
+     * @param root_path
+     * @param match_name
+     * @return
+     * @throws IOException
+     */
+    public String do_find_match_single_endWith(String root_path, String match_name) throws IOException {
+        String path = null;
+
+        LinkedList<String> list = new LinkedList<String>();
+        FilenameFilter filenameFilter = (file, name) -> name.endsWith(match_name);
+        get_path_list_by_root(root_path, list, filenameFilter);
+
+        if (list.size() != 0) {
+            String str = list.get(0);
+            File file = new File(str);
+            path = file.getAbsolutePath();
+        }
+
+        return path;
+    }
+
+    /**
      * @param root_file
      * @param list           container "node_modules" of list
      * @param filenameFilter
