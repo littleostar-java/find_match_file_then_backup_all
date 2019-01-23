@@ -1,0 +1,6 @@
+{
+  "CATALINA_HOME": "C:\\Tomcat 9.0",
+  "MAVEN_HOME": "C:\\apache-maven-3.6.0",
+  "Path": ";C:\\apache-maven-3.6.0\\bin;C:\\spring-2.1.2.RELEASE\\bin;",
+  "SPRING_HOME": "C:\\spring-2.1.2.RELEASE"
+}

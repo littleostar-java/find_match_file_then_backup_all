@@ -14,21 +14,62 @@ import java.util.concurrent.Executors;
 public class Sample {
     static StaticUtilTool staticUtilTool = new StaticUtilTool();
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
 
         ExecutorService executorService = Executors.newSingleThreadExecutor();
 
         executorService.submit(() -> {
             try {
                 FileUtils.deleteDirectory(new File(StaticUtilTool.dest_root_path_str));
-
-                String root_path = "C:" + File.separator + "WebstormProjects";
-                staticUtilTool.do_delete_by_path(root_path, "node_modules");
-
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         });
+        executorService.submit(() -> {
+            try {
+                String root_path = "C:" + File.separator + "WebstormProjects";
+                staticUtilTool.do_delete_by_path(root_path, "node_modules");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        executorService.submit(() -> {
+            try {
+                String root_path = "C:" + File.separator + "WebstormProjects";
+                staticUtilTool.do_delete_by_path(root_path, "dist");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        executorService.submit(() -> {
+            try {
+                String root_path = "C:" + File.separator + "IdeaProjects";
+                staticUtilTool.do_delete_by_path(root_path, "node_modules");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        executorService.submit(() -> {
+            try {
+                String root_path = "C:" + File.separator + "IdeaProjects";
+                staticUtilTool.do_delete_by_path(root_path, "target");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        executorService.submit(() -> {
+            try {
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        executorService.submit(() -> {
+            try {
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
 
         executorService.submit(() -> {
             try {
